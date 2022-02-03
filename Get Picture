@@ -1,36 +1,50 @@
+import os
+import sys
 import pygame
 import requests
 
 
 def get_picture(x, y, z=10):
+    if z > 18:
+        z = 18
+    if z < 1:
+        z = 1
+    up = z
     FPS = 60
-    REQ = s = f'https://static-maps.yandex.ru/1.x/?ll={x}%2C{y}&size=450,450&z={z}&l=map'
+    map_request = s = f'https://static-maps.yandex.ru/1.x/?ll={x}%2C{y}&size=450,450&z={z}&l=map'
+    response = requests.get(map_request)
     fullscreen = False
     width = 600
-    height = 400
+    height = 350
     pygame.init()
-    if not fullscreen:
-        screen = pygame.display.set_mode((width, height))
-    else:
-        screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-    screen = pygame.display.set_mode((width, height))
-    pygame.display.set_caption('Высадка десанта')
 
-    response = requests.get(REQ)
-    if response:
-        with open('Map.png', 'wb') as f:
-            f.write(response.content)
+    map_file = "map.png"
+    with open(map_file, "wb") as file:
+        file.write(response.content)
+    pygame.init()
+    screen = pygame.display.set_mode((600, 450))
+    screen.blit(pygame.image.load(map_file), (0, 0))
+    pygame.display.set_caption('Австралия')
+    pygame.display.flip()
 
     running = True
     while running:
         screen.fill((255, 255, 255))
         for event in pygame.event.get():
+            keys = pygame.key.get_pressed()
             if event.type == pygame.QUIT:
                 running = False
+            if keys[pygame.K_PAGEUP]:
+                up -= 1
+                get_picture(x, y, up)
+            if keys[pygame.K_PAGEDOWN]:
+                up += 1
+                get_picture(x, y, up)
         img = pygame.image.load('Map.png')
         screen.blit(img, (0, 0))
         pygame.display.flip()
     pygame.quit()
+    os.remove(map_file)
 
 
 get_picture(57, 57, 1)
