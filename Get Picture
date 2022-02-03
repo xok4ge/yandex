@@ -1,0 +1,36 @@
+import pygame
+import requests
+
+
+def get_picture(x, y, z=10):
+    FPS = 60
+    REQ = s = f'https://static-maps.yandex.ru/1.x/?ll={x}%2C{y}&size=450,450&z={z}&l=map'
+    fullscreen = False
+    width = 600
+    height = 400
+    pygame.init()
+    if not fullscreen:
+        screen = pygame.display.set_mode((width, height))
+    else:
+        screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    screen = pygame.display.set_mode((width, height))
+    pygame.display.set_caption('Высадка десанта')
+
+    response = requests.get(REQ)
+    if response:
+        with open('Map.png', 'wb') as f:
+            f.write(response.content)
+
+    running = True
+    while running:
+        screen.fill((255, 255, 255))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        img = pygame.image.load('Map.png')
+        screen.blit(img, (0, 0))
+        pygame.display.flip()
+    pygame.quit()
+
+
+get_picture(57, 57, 1)
