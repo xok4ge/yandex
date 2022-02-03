@@ -6,8 +6,8 @@ import requests
 
 FPS = 60
 
-toponym_to_find = '?ll=147.385567%2C11.646794&z=2'
-geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
+toponym_to_find = '?ll37.769597%2C55.723277&spn=25,25&l=sat'
+geocoder_api_server = "https://static-maps.yandex.ru/1.x/"
 geocoder_params = {
      "apikey": "40d1649f-0493-4b70-98ba-98533de7710b",
      "geocode": toponym_to_find,
