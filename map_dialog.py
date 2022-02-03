@@ -10,6 +10,9 @@ class MapMenu(QMainWindow):
         uic.loadUi('map_data.ui', self)
         self.setWindowTitle('Map data')
         self.pushButton.clicked.connect(self.esc)
+        self.setWindowFlags(
+            self.windowFlags() and QtCore.Qt.CustomizeWindowHint)
+        
 
     def esc(self):
         self.scale = self.spn.text()
