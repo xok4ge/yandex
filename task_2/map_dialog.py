@@ -2,7 +2,7 @@ from PyQt5 import uic, QtCore, QtWidgets
 from PyQt5.QtGui import QCloseEvent
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import main
-from task_1.map_inf import info as inf
+from task_2.map_inf import info as inf
 import sys
 
 
@@ -17,7 +17,7 @@ class MapMenu(QMainWindow):
     def esc(self):
         cor = [self.x_cord.text(), self.y_cord.text()]
         inf.scale_i = self.scale.text()
-        inf.polz_i = [float(i) if i else '' for i in cor]
+        inf.polz_i = [int(i) if i else '' for i in cor]
         # print(main.polz, 'one')
         self.close()
 
