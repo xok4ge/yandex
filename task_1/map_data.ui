@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="coord">
+   <widget class="QLineEdit" name="x_cord">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -27,7 +27,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="spn">
+   <widget class="QLineEdit" name="y_cord">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -107,7 +107,7 @@
      <string>Координата y:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="scale">
     <property name="geometry">
      <rect>
       <x>130</x>

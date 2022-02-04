@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5 import QtCore, QtGui, QtWidgets
 import task_1.map_dialog as dialog
 import requests
+from task_1.map_inf import info as inf
 
 #---------------------------------
 pygame.init()
@@ -11,7 +12,7 @@ FPS = 60
 FULLSCREEN = False
 WIDTH = 600
 HEIGHT = 400
-polz = []
+polz = [111]
 scale = ''
 start, always = [30, 50], []  # max y = 80, min y = -81     max x = 180, min x = -180
 #----------------------------------
@@ -23,7 +24,6 @@ def render(api):
         f.write(response.content)
     img = pygame.image.load('l.png')
     return img
-
 
 def get_picture(x, y, scale=2):
     # view min\max scale
@@ -38,6 +38,8 @@ def main(fps, width, height, fullscreen=False):
         screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     screen.fill((0, 0, 0))
     dialog.open_dialog()
+    polz = inf.polz_i
+    scale = inf.scale_i
     try:
         coords = get_picture(*polz)
         if not coords:
