@@ -103,8 +103,9 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         hight = self.lineEdit_3.text()
         wight = self.lineEdit_4.text()
         # print(type(hight), type(wight))
-        if hight.isdigit() == True and wight.isdigit() == True or "-" in hight or "-" in wight:
-            if -180 <= int(hight) <= 180 and -85 <= int(wight) <= 85:
+        if hight.isdigit() == True and wight.isdigit() == True or "-" in hight[0] or "-" in wight[
+            0] or "." in wight or "." in hight:
+            if -180 <= float(hight) <= 180 and -85 <= float(wight) <= 85:
                 x, y = hight, wight
                 self.k1 = 1
             else:
