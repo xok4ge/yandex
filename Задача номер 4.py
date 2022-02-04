@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
         self.radioButton.setFont(font)
         self.radioButton.setObjectName("radioButton")
         self.radioButton_2 = QtWidgets.QRadioButton(self.centralwidget)
-        self.radioButton_2.setGeometry(QtCore.QRect(160, 210, 131, 31))
+        self.radioButton_2.setGeometry(QtCore.QRect(160, 210, 150, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.radioButton_2.setFont(font)
@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Введите координаты:"))
         self.pushButton.setText(_translate("MainWindow", "Продолжить"))
-        self.label_2.setText(_translate("MainWindow", "Введите вид карты:"))
+        self.label_2.setText(_translate("MainWindow", "Выберите вид карты:"))
         self.radioButton.setText(_translate("MainWindow", "Maps"))
         self.radioButton_2.setText(_translate("MainWindow", "SATELLITE "))
         self.radioButton_3.setText(_translate("MainWindow", "HYBRID "))
@@ -103,18 +103,19 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         hight = self.lineEdit_3.text()
         wight = self.lineEdit_4.text()
         # print(type(hight), type(wight))
-        if hight.isdigit() == True and wight.isdigit() == True or "-" in hight[0] or "-" in wight[
+        if hight.isdigit() and wight.isdigit() or "-" in hight[0] or "-" in wight[
             0] or "." in wight or "." in hight:
             if -180 <= float(hight) <= 180 and -85 <= float(wight) <= 85:
                 x, y = hight, wight
                 self.k1 = 1
             else:
-                self.label.setText("Ведите правельные координаты")
+                self.label.setText("Введите правильные координаты")
         else:
-            self.label.setText("Ведите правельные координаты")
+            self.label.setText("Введите правильные координаты")
 
-        if self.radioButton.isChecked() == False and self.radioButton_2.isChecked() == False and self.radioButton_3.isChecked() == False:
-            self.label_2.setText("Ведите правельные координаты")
+        if self.radioButton.isChecked() == False and self.radioButton_2.isChecked() == False and \
+                self.radioButton_3.isChecked() == False:
+            self.label_2.setText("Введите правильные координаты")
         else:
             if self.radioButton_3.isChecked():
                 type = "sat,skl"
@@ -135,7 +136,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
             z = 1
         up = z
         FPS = 60
-        map_request = s = f'https://static-maps.yandex.ru/1.x/?ll={x}%2C{y}&size=450,450&z={z}&l={type}'
+        map_request = f'https://static-maps.yandex.ru/1.x/?ll={x}%2C{y}&size=450,450&z={z}&l={type}'
         response = requests.get(map_request)
         fullscreen = False
         width = 450
@@ -148,7 +149,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         pygame.init()
         screen = pygame.display.set_mode((width, height))
         screen.blit(pygame.image.load(map_file), (0, 0))
-        pygame.display.set_caption('Австралия')
+        pygame.display.set_caption('Задача 4')
         pygame.display.flip()
 
         running = True

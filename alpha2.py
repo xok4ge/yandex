@@ -103,8 +103,7 @@ def main(fps, width, height, fullscreen=False):
         screen = pygame.display.set_mode((width, height))
     else:
         screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-    screen = pygame.display.set_mode((width, height))
-    screen.fill((0,0,0))
+    screen.fill((0, 0, 0))
     app = QApplication(sys.argv)
     ex = MainWindow()
     ex.show()
