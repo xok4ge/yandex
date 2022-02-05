@@ -32,6 +32,7 @@ def cheak_num(hight, wight):
 
     return k1
 
+
 def cheak_map(r1, r2, r3):
     if r1 == False and r2 == False and r3 == False:
         k2 = 0
@@ -45,6 +46,5 @@ def cheak_map(r1, r2, r3):
             type = "map"
         k2 = 1
         return k2, type
-
 
 # print(cheak_num("-7.78", "-59.25"), cheak_map(False, False, False))

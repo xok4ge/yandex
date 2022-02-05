@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from tasks import messbox, get_picture, cheak
 
+
 class MyWidget(QMainWindow, messbox.Ui_MainWindow):
     def __init__(self):
         super().__init__()
@@ -11,8 +12,9 @@ class MyWidget(QMainWindow, messbox.Ui_MainWindow):
     def run(self):
         hight = self.lineEdit_3.text()
         wight = self.lineEdit_4.text()
-        k1= cheak.cheak_num(hight, wight)
-        k2, type= cheak.cheak_map(self.radioButton.isChecked(), self.radioButton_2.isChecked(), self.radioButton_3.isChecked())
+        k1 = cheak.cheak_num(hight, wight)
+        k2, type = cheak.cheak_map(self.radioButton.isChecked(), self.radioButton_2.isChecked(),
+                                   self.radioButton_3.isChecked())
         # print(k1, k2)
 
         if k1 == 1 and k2 == 1:
@@ -28,7 +30,6 @@ class MyWidget(QMainWindow, messbox.Ui_MainWindow):
         else:
             self.label.setText("Ведите правельные координаты")
             self.label_2.setText("Выбирите вид карты")
-
 
 
 if __name__ == '__main__':
