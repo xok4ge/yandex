@@ -15,7 +15,6 @@ class MyWidget(QMainWindow, messbox.Ui_MainWindow):
         k1 = cheak.cheak_num(hight, wight)
         k2, type = cheak.cheak_map(self.radioButton.isChecked(), self.radioButton_2.isChecked(),
                                    self.radioButton_3.isChecked())
-        # print(k1, k2)
 
         if k1 == 1 and k2 == 1:
             self.close()
