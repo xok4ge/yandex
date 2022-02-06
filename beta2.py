@@ -116,17 +116,13 @@ def get_picture(x, y, z=Z, l=L):
         return f'?ll={x}%2C{y}&z={z}&l={l}'
 
 
-def zoom(z, *args):
+def zoom(z):
     global Z
     Z += z
     if Z > 12:
         Z = 12
     elif Z < 2:
         Z = 2
-    cords = f'?ll={args[0][0]}%2C{args[0][1]}&z={Z}&l={L}'
-    geocoder_api_serv = "https://static-maps.yandex.ru/1.x/" + cords
-    img = render(geocoder_api_serv)
-    return img
 
 
 def look(*args):
@@ -137,11 +133,6 @@ def look(*args):
     else:
         n = sloi[sloi.index(L) + 1]
         L = str(n)
-    print(L)
-    cords = f'?ll={args[0][0]}%2C{args[0][1]}&z={Z}&l={L}'
-    geocoder_api_serv = "https://static-maps.yandex.ru/1.x/" + cords
-    img = render(geocoder_api_serv)
-    return img
 
 
 def main(fps, width, height, fullscreen=False):
@@ -175,11 +166,11 @@ def main(fps, width, height, fullscreen=False):
             if event.type == pygame.QUIT:
                 running = False
             if keys[pygame.K_PAGEUP]:
-                img = zoom(1, always)
+                zoom(1)
             if keys[pygame.K_PAGEDOWN]:
-                img = zoom(-1, always)
+                zoom(-1)
             if event.type == pygame.KEYDOWN and event.key == pygame.K_r:
-                img = look(always)
+                look(always)
         img = move(always)
         screen.blit(img, (0, 0))
         pygame.display.flip()
